@@ -3,30 +3,27 @@ const express = require('express');
 
 const app = express();
 
-const baseDir = `${__dirname}/build`
+const baseDir = `${__dirname}`
 
 app.use(express.static(`${baseDir}`))
 
-// app.use(express.static('../www/public'));
+app.use(express.static('../www/public'));
+
+app.use(express.static(`${baseDir}/build`));
+
+// app.use(express.static(`${baseDir}/build/static`));
 
 app.listen(21041, () => 
 	console.log('Servidor iniciado na porta 21041')
 );
 
-app.get('/ToDo', (req, res) => 
-  res.sendFile('index.html' , { root : baseDir } )
-);
-
 app.get('/Teste', (req, res) => 
-  res.send("oi")
+  res.sendFile('index.html' , { root : "../www" } )
 );
 
-// app.get('/Teste', (req, res) => 
-//   res.sendFile('index.html' , { root : baseDir } )
-// );
-
-app.get('/Teste/user', (req, res) => 
-  res.send("oi")
+app.get('/Teste/todo/todo', (req, res) => 
+  // res.send("oi")
+  res.sendFile('index.html' , { root : `${baseDir}/build` } )
 );
 
 // import express from 'express';

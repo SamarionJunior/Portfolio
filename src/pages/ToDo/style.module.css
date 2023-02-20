@@ -1,30 +1,29 @@
-
-
-
-.ToDo *{
-    font-size: 1.6rem;
-    letter-spacing: normal;
-    line-height: calc(1.6rem / 100 * 120);
-    /* border-radius: 4px; */
-
-    transition: all ease 0.1s;
-    font-family: 'Space Mono', monospace;
-}
+@import url("../../variables.css");
 
 @media (max-width: 480px){
     :root{
-        font-size: 50%;
+        font-size: 1vw;
     }
 }
 
 .ToDo{
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-content: flex-start;
     background-color: #eee;
+}
+
+.ToDo *{
+    font-size: var(--Font-Size-Normal);
+    letter-spacing: var(--Letter-Spacing-Normal);
+    line-height: var(--Line-Height-Normal);
+}
+
+#Items,#Check, #FullTextButtonOpen, #FullTextButtonClose, #LabelLock, #LabelUnlock, #UpdateTextButtonOpen, #UpdateTextButtonClose, #ToDo{
+    border: 0;
 }
 
     .ToDoContent{
@@ -85,6 +84,7 @@
             }    
 
                 .TextInput{
+                    font-family: "Space Mono", monospace;
                     width: 100%;
                     padding: 1rem 0;
                         
@@ -163,7 +163,6 @@
                         justify-items: center;
                         align-items: center;
                         margin-bottom: calc(2rem -  3px);
-                        border-bottom: 3px solid transparent;
                     }
 
                     @media (max-width: 480px){
@@ -198,8 +197,9 @@
                         }
 
                         .Label{
+                            font-family: "Space Mono", monospace;
                             width: 100%;
-                            padding: 1.0rem;
+                            padding: 0.65rem;
                             padding-left: 0;
                             padding-right: 0;
                             flex-grow: 1;
@@ -223,11 +223,17 @@
 
                         .ButtonCheckInput:hover{
                             background-color: black;
+                        }
+
+                        .ButtonCheckInput:hover>i{
                             color: white;
                         }
 
                         .ButtonCheckInput:active{
                             background-color: white;
+                        }
+
+                        .ButtonCheckInput:active>i{
                             color: black;
                         }
 
@@ -235,11 +241,17 @@
         
                             .ButtonCheckInput:hover{
                                 background-color: #fff;
+                            }
+        
+                            .ButtonCheckInput:hover>i{
                                 color: black;
                             }
             
                             .ButtonCheckInput:active{
                                 background-color: black;
+                            }
+            
+                            .ButtonCheckInput:active>i{
                                 color: #fff;
                             }
                         } 

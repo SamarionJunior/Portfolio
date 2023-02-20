@@ -1,5 +1,5 @@
-import "../../style.css"
-import "./style.css"
+// import "../../style.css"
+import Style from "./style.module.css"
 
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -76,28 +76,28 @@ const ToDo = _ => {
     }, [editedText])
 
     const FullText = (command, id) => {
+        console.log(`${Style.FullTextButtonOpen}${id}`)
         if(command){
-            document.getElementById(`LabelLock${id}`).style.whiteSpace = "normal"
-            document.getElementById(`LabelUnlock${id}`).style.whiteSpace = "normal"
-            document.getElementById(`Items${id}`).style.alignItems = "start"
-            document.getElementById(`FullTextButtonOpen${id}`).style.display = "none"
-            document.getElementById(`FullTextButtonClose${id}`).style.display = "block"
+            document.getElementById(`${Style.LabelLock}${id}`).style.whiteSpace = "normal"
+            document.getElementById(`${Style.LabelUnlock}${id}`).style.whiteSpace = "normal"
+            document.getElementById(`${Style.Items}${id}`).style.alignItems = "start"
+            document.getElementById(`${Style.FullTextButtonOpen}${id}`).style.display = "none"
+            document.getElementById(`${Style.FullTextButtonClose}${id}`).style.display = "block"
         }else{
-            document.getElementById(`LabelLock${id}`).style.whiteSpace = "nowrap"
-            document.getElementById(`LabelUnlock${id}`).style.whiteSpace = "nowrap"
-            document.getElementById(`Items${id}`).style.alignItems = "center"
-            document.getElementById(`FullTextButtonOpen${id}`).style.display = "block"
-            document.getElementById(`FullTextButtonClose${id}`).style.display = "none"
+            document.getElementById(`${Style.LabelLock}${id}`).style.whiteSpace = "nowrap"
+            document.getElementById(`${Style.LabelUnlock}${id}`).style.whiteSpace = "nowrap"
+            document.getElementById(`${Style.Items}${id}`).style.alignItems = "center"
+            document.getElementById(`${Style.FullTextButtonOpen}${id}`).style.display = "block"
+            document.getElementById(`${Style.FullTextButtonClose}${id}`).style.display = "none"
         }
     }
 
     const UpdateText = (command, id) => {
         if(command){
-            document.getElementById(`LabelLock${id}`).style.display = "none"
-            document.getElementById(`LabelUnlock${id}`).style.display = "block"
-            document.getElementById(`UpdateTextButtonOpen${id}`).style.display = "none"
-            document.getElementById(`UpdateTextButtonClose${id}`).style.display = "block"
-            
+            document.getElementById(`${Style.LabelLock}${id}`).style.display = "none"
+            document.getElementById(`${Style.LabelUnlock}${id}`).style.display = "block"
+            document.getElementById(`${Style.UpdateTextButtonOpen}${id}`).style.display = "none"
+            document.getElementById(`${Style.UpdateTextButtonClose}${id}`).style.display = "block"
             
             tasks.forEach(task => {
                 if(task.id === id){
@@ -105,10 +105,10 @@ const ToDo = _ => {
                 }
             })
         }else{
-            document.getElementById(`LabelLock${id}`).style.display = "block"
-            document.getElementById(`LabelUnlock${id}`).style.display = "none"
-            document.getElementById(`UpdateTextButtonOpen${id}`).style.display = "block"
-            document.getElementById(`UpdateTextButtonClose${id}`).style.display = "none"
+            document.getElementById(`${Style.LabelLock}${id}`).style.display = "block"
+            document.getElementById(`${Style.LabelUnlock}${id}`).style.display = "none"
+            document.getElementById(`${Style.UpdateTextButtonOpen}${id}`).style.display = "block"
+            document.getElementById(`${Style.UpdateTextButtonClose}${id}`).style.display = "none"
             
             setTasks(oldTasks => 
                 oldTasks.map(oldTask => {
@@ -120,79 +120,59 @@ const ToDo = _ => {
             )
         }
     }
-    // useEffect(() => {
-    //     setShow(dataList.length !== 0 ? dataList.map(task => 
-    //         <div key={String(task.id)} className="Items">
-    //             <input id={`check${task.id}`} name={`check${task.id}`} type="checkbox" className="CheckInput"  check={String(task.isChecked)} onChange={(e) => Check(Number(task.id))}/>
-    //             <button className="ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
-    //                 <FontAwesomeIcon icon="fa-caret-down" />
-    //             </button>
-    //             <label htmlFor={`check${task.id}`} className={task.isChecked ? "Label cortado" : "Label"}>{task.name}</label>
-    //             <button className="ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
-    //                 <FontAwesomeIcon icon="fa-arrows-up-down-left-right" />
-    //             </button>
-    //             <button className="ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
-    //                 <FontAwesomeIcon icon="fa-pen" />
-    //             </button>
-    //             <button className="ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
-    //                 <FontAwesomeIcon icon="fa-trash" />
-    //             </button>
-    //         </div>
-    //     ) : <h1>Vazio!!!</h1>)
-    // }, [dataList])
     console.log(tasks)
     return (
-        <div id="ToDo" className="ToDo">
-            <main className="ToDoContent">
-                <section className="List">
-                    <div className="Form">
-                        <button className="ButtonTextInput" onClick={() => newTaskInput !== "" ? Search() : console.log("Vazio!!!")}>
+        <div id={Style.ToDo} className={Style.ToDo}>
+            <main className={Style.ToDoContent}>
+                <section className={Style.List}>
+                    <div className={Style.Form}>
+                        <button className={Style.ButtonTextInput} onClick={() => newTaskInput !== "" ? Search() : console.log("Vazio!!!")}>
                             <i className="fa-solid fa-magnifying-glass"></i>
                         </button>
 
-                        <button className="ButtonTextInput" onClick={() => searchList !== false ? setSearchList(false) : undefined}>
+                        <button className={Style.ButtonTextInput} onClick={() => searchList !== false ? setSearchList(false) : undefined}>
                             <i className="fa-solid fa-xmark"></i>
                         </button>
 
-                        <input id="NewTaskInput" name="NewTaskInput" type="text" className="TextInput" placeholder="Digite uma Nova Tarefa!" value={newTaskInput} onChange={(e) => setNewTaskInput(String(e.target.value))}/>
+                        <input id={Style.NewTaskInput} name="NewTaskInput" type="text" className={Style.TextInput} placeholder="Digite uma Nova Tarefa!" value={newTaskInput} onChange={(e) => setNewTaskInput(String(e.target.value))}/>
                        
-                        <button className="ButtonTextInput" onClick={() => newTaskInput !== "" ? setNewTaskInput("") : console.log("Vazio!!!")}>
+                        <button className={Style.ButtonTextInput} onClick={() => newTaskInput !== "" ? setNewTaskInput("") : console.log("Vazio!!!")}>
                             <i className="fa-solid fa-broom"></i>
                         </button>
 
-                        <button className="ButtonTextInput" onClick={() => newTaskInput !== "" ? setNewTask(newTaskInput) : console.log("Vazio!!!")}>
+                        <button className={Style.ButtonTextInput} onClick={() => newTaskInput !== "" ? setNewTask(newTaskInput) : console.log("Vazio!!!")}>
                             <i className="fa-solid fa-plus"></i>
                         </button>
                     </div>
-                    <div className="Tasks">
-                        <div className="Scroll">
+                    <div className={Style.Tasks}>
+                        <div className={Style.Scroll}>
                             {dataList.length !== 0 ? dataList.map(task => 
                                 task !== undefined ?
-                                <div /* draggable="true" */ key={String(task.id)} className="Items" id={`Items${task.id}`} >
-                                    <input id={`check${task.id}`} name={`check${task.id}`} type="checkbox" className="CheckInput"  check={String(task.isChecked)} onChange={(e) => Check(Number(task.id))}/>
+                                <div /* draggable="true" */ key={String(task.id)} className={Style.Items} id={`${Style.Items}${task.id}`} >
+                                    <input id={`${Style.Check}${task.id}`} name={`check${task.id}`} type="checkbox" className={Style.CheckInput}  check={String(task.isChecked)} onChange={(e) => Check(Number(task.id))}/>
 
-                                    <button className="ButtonCheckInput" id={`FullTextButtonOpen${task.id}`} onClick={(e => FullText(true, Number(task.id)))}>
+                                    <button className={Style.ButtonCheckInput} id={`${Style.FullTextButtonOpen}${task.id}`} onClick={(e) => FullText(true, Number(task.id))}>
                                         <i className="fa-solid fa-caret-down"></i>
                                     </button>
-                                    <button className="ButtonCheckInput" id={`FullTextButtonClose${task.id}`} style={{display: "none"}} onClick={(e => FullText(false, Number(task.id)))}>
+                                    <button className={Style.ButtonCheckInput} id={`${Style.FullTextButtonClose}${task.id}`} style={{display: "none"}} onClick={(e) => FullText(false, Number(task.id))}>
                                         <i className="fa-solid fa-caret-up"></i>
                                     </button>
 
-                                    <p htmlFor={`check${task.id}`} id={`LabelLock${task.id}`} className={task.isChecked ? "Label cortado" : "Label"}>{task.name}</p>
-                                    <input htmlFor={`check${task.id}`} id={`LabelUnlock${task.id}`} className="Label" style={{display: "none"}} onChange={(e) => {setEditedText(String(e.target.value))}} value={editedText}/>
+                                    <p htmlFor={`check${task.id}`} id={`${Style.LabelLock}${task.id}`} className={task.isChecked ? `${Style.Label} ${Style.cortado}` : Style.Label}>{task.name}</p>
+                                    <input htmlFor={`check${task.id}`} id={`${Style.LabelUnlock}${task.id}`} className={Style.Label} style={{display: "none"}} onChange={(e) => {setEditedText(String(e.target.value))}} value={editedText}/>
 
-                                    <button className="ButtonCheckInput" id={`UpdateTextButtonOpen${task.id}`}  onClick={(e => UpdateText(true, Number(task.id)))}>
+                                    <button className={Style.ButtonCheckInput} id={`${Style.UpdateTextButtonOpen}${task.id}`} onClick={(e => UpdateText(true, Number(task.id)))}>
                                         <i className="fa-solid fa-pen"></i>
                                     </button>
-                                    <button className="ButtonCheckInput" id={`UpdateTextButtonClose${task.id}`}  style={{display: "none"}} onClick={(e => UpdateText(false, Number(task.id)))}>
+                                    <button className={Style.ButtonCheckInput} id={`${Style.UpdateTextButtonClose}${task.id}`} style={{display: "none"}} onClick={(e => UpdateText(false, Number(task.id)))}>
                                         <i className="fa-solid fa-floppy-disk"></i>
                                     </button>
 
-                                    <button className="ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
+                                    <button className={Style.ButtonCheckInput} onClick={(e => RemoveTask(Number(task.id)))}>
                                         <i className="fa-solid fa-trash"></i>
                                     </button>
                                 </div> : undefined
-                            ) : <h1 className="Warning">Vazio!!!</h1>}
+                            ) : <h1 className={Style.Warning}>Vazio!!!</h1>}
                         </div>
                     </div>
                 </section>
@@ -200,6 +180,27 @@ const ToDo = _ => {
         </div>
     )
 }
+
+// useEffect(() => {
+//     setShow(dataList.length !== 0 ? dataList.map(task => 
+//         <div key={String(task.id)} className={Style.Items">
+//             <input id={`check${task.id}`} name={`check${task.id}`} type="checkbox" className={Style.CheckInput"  check={String(task.isChecked)} onChange={(e) => Check(Number(task.id))}/>
+//             <button className={Style.ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
+//                 <FontAwesomeIcon icon="fa-caret-down" />
+//             </button>
+//             <label htmlFor={`check${task.id}`} className={task.isChecked ? "Label cortado" : "Label"}>{task.name}</label>
+//             <button className={Style.ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
+//                 <FontAwesomeIcon icon="fa-arrows-up-down-left-right" />
+//             </button>
+//             <button className={Style.ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
+//                 <FontAwesomeIcon icon="fa-pen" />
+//             </button>
+//             <button className={Style.ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
+//                 <FontAwesomeIcon icon="fa-trash" />
+//             </button>
+//         </div>
+//     ) : <h1>Vazio!!!</h1>)
+// }, [dataList])
 
 // const columns = document.querySelectorAll(".column");
 
@@ -240,6 +241,6 @@ const ToDo = _ => {
 
 export default ToDo
 
-// <button className="ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
-//     <i className="fa-solid fa-arrows-up-down" />
+// <button className={Style.ButtonCheckInput" onClick={(e => RemoveTask(Number(task.id)))}>
+//     <i className={Style.fa-solid fa-arrows-up-down" />
 // </button>

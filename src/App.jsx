@@ -9,8 +9,8 @@ import "./style.css"
 const App = _ => {
   return (
     <Routes>
-      <Route path="/ToDo" element={<ToDo />} />
-      <Route path="/" element={<Home />} />
+      <Route exact path="/ToDo" element={<ToDo />} />
+      <Route exact path="/" element={<Home />} />
     </Routes>
   );
 }
