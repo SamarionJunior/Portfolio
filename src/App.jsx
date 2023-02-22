@@ -10,8 +10,12 @@ const App = _ => {
   return (
     <Routes>
       <Route exact path="/Teste/ToDo" element={<ToDo />} />
+      <Route exact path="/Teste/Home/" element={<Home />} />
       <Route exact path="/Teste/Home" element={<Home />} />
       <Route exact path="/Teste/" element={<Home />} />
+      <Route exact path="/Teste" element={<Home />} />
+      <Route exact path="/" element={<Home />} />
+      <Route exact path="*" element={<Home />} />
     </Routes>
   );
 }

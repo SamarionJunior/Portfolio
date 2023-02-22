@@ -1,1 +1,12 @@
-Redirect 301 / http://www.teste20230211.kinghost.net/Teste/Home
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} ^/404/$
+RewriteRule ^(.*)$ /Teste/Home [L]
+
+RewriteCond %{REQUEST_URI} ^/500/$
+RewriteRule ^(.*)$ /Teste/Home [L]
+
+</IfModule>
